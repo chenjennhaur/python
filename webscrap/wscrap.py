@@ -113,6 +113,19 @@ soup = BeautifulSoup(page)
 for tr in soup.find_all('tr')[2:]:
     tds = tr.find_all('td')
     print(tds[0].text, tds[2].text, tds[3].text)
+    
+# SQLite
+
+#Create SQLite
+conn = sqlite3.connect('lyrics.db')
+eumo = pd.read_csv('EU_MO.csv')
+eumo.to_sql('test',conn,if_exists='replace')
+
+cur = conn.cursor()
+cur.execute('delete from test')
+conn.commit
+
+pd.read_sql_query("select * from test;",conn)
 
 
 
