@@ -16,10 +16,14 @@ steer = ev3.MediumMotor('outC')
 #mR.run_timed(time_sp=2000,speed_sp=600)
 #mL.run_timed(time_sp=2000,speed_sp=600)
 # position_sp can be both positive and negative 
-steer.run_to_abs_pos(position_sp=45,speed_sp=360)
-steer.position
+#steer.run_to_abs_pos(position_sp=45,speed_sp=360)
+#steer.position
 
 print(ir.value())
+
+while(ir.value()>20):
+  mR.run_forever(speed_sp=-600)
+  mL.run_forever(speed_sp=-600)
       
-# mR.stop(stop_action='brake')
-# mL.stop(stop_action='brake')
+mR.stop(stop_action='brake')
+mL.stop(stop_action='brake')
